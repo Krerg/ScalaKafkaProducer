@@ -15,6 +15,8 @@ ScalaCompileOptions.metaClass.useAnt = false
 
 
 dependencies {
+  //  compile group: 'org.apache.kafka', name: 'kafka_2.12', version: '2.1.0'
+    compile group: 'org.apache.kafka', name: 'kafka-clients', version: '2.1.0'
     compile group: 'org.scala-lang', name: 'scala-library', version: "$scalaVersion"
     compile group: 'org.apache.spark', name: "spark-sql_$scalaCompatVersion", version: "$sparkVersion"
     compile group: 'org.apache.spark', name: "spark-core_$scalaCompatVersion", version: "$sparkVersion"
