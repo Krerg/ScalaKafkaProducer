@@ -8,9 +8,12 @@ import scala.concurrent.forkjoin.ThreadLocalRandom
 import scala.util.Random
 
 class GenerateEventJob(minimumDelay: Long, maximumDelay: Long, producer: KafkaProducer[String, BookingEvent]) extends Runnable{
+
+  private var stopped = false
+
   override def run(): Unit = {
 
-    while(true) {
+    while(!stopped) {
       val delay = ThreadLocalRandom.current().nextLong(minimumDelay, maximumDelay)
       Thread.sleep(delay)
       producer.send(new ProducerRecord[String, BookingEvent]("test", generateEvent()))
@@ -43,6 +46,10 @@ class GenerateEventJob(minimumDelay: Long, maximumDelay: Long, producer: KafkaPr
       ThreadLocalRandom.current().nextLong(),
       ThreadLocalRandom.current().nextInt()
     )
+  }
+
+  def stop(): Unit = {
+    stopped = true
   }
 
 }

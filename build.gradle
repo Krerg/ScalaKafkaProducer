@@ -35,5 +35,8 @@ dependencies {
     compile group: 'org.apache.spark', name: "spark-core_$scalaCompatVersion", version: "$sparkVersion"
     testCompile group: 'org.apache.spark', name: "spark-hive_$scalaCompatVersion", version: "$sparkVersion"
     testCompile group: 'com.holdenkarau', name: 'spark-testing-base_2.11', version: '2.3.0_0.9.0'
+    testCompile group: 'org.mockito', name: 'mockito-all', version: '1.10.19'
+
+
 }
 
