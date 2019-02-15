@@ -5,6 +5,10 @@ import java.util
 import com.fasterxml.jackson.databind.ObjectMapper
 import org.apache.kafka.common.serialization.Serializer
 
+/**
+  * Serializer for {@link BookingEvent}.
+  * Serializer output is JSON representation of object.
+  */
 class EventSerializer extends Serializer[BookingEvent]{
   override def configure(configs: util.Map[String, _], isKey: Boolean): Unit = {
 

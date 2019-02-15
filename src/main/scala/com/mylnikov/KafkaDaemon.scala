@@ -5,6 +5,10 @@ import java.util.Properties
 import org.apache.kafka.clients.producer.KafkaProducer
 import org.spark_project.jetty.util.thread.{ExecutorThreadPool, ThreadPool}
 
+/**
+  * Entry point of program.
+  * Launches the kafka producer and jobs in parallel for sending events.
+  */
 object KafkaDaemon {
 
   val DEFAULT_THREAD_SIZE = 5
@@ -19,6 +23,7 @@ object KafkaDaemon {
       throw new IllegalArgumentException("You should specify bootstrap server in arguments")
     }
 
+    // Kafka config
     val props = new Properties()
     props.put("bootstrap.servers", args(0))
     props.put("value.serializer", "com.mylnikov.EventSerializer")
@@ -28,6 +33,7 @@ object KafkaDaemon {
 
     val THREAD_POOL = new ExecutorThreadPool(DEFAULT_THREAD_SIZE)
 
+    // Launch jobs in parallel
     (0 to DEFAULT_THREAD_SIZE) ->
       THREAD_POOL.execute(new GenerateEventJob(MINIMUM_EVENT_DELAY, MAXIMUM_EVENT_DELAY, producer))
 
