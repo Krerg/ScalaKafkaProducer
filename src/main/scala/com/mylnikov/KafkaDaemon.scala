@@ -11,11 +11,11 @@ import org.spark_project.jetty.util.thread.{ExecutorThreadPool, ThreadPool}
   */
 object KafkaDaemon {
 
-  val DEFAULT_THREAD_SIZE = 5
+  val DEFAULT_THREAD_SIZE = 10
 
-  val MINIMUM_EVENT_DELAY = 500
+  val MINIMUM_EVENT_DELAY = 20
 
-  val MAXIMUM_EVENT_DELAY = 1500
+  val MAXIMUM_EVENT_DELAY = 50
 
   def main(args: Array[String]): Unit = {
 
@@ -34,9 +34,9 @@ object KafkaDaemon {
     val THREAD_POOL = new ExecutorThreadPool(DEFAULT_THREAD_SIZE)
 
     // Launch jobs in parallel
-    (0 to DEFAULT_THREAD_SIZE) ->
+    for (i <- 0 to DEFAULT_THREAD_SIZE) {
       THREAD_POOL.execute(new GenerateEventJob(MINIMUM_EVENT_DELAY, MAXIMUM_EVENT_DELAY, producer))
-
+    }
   }
 
 }
