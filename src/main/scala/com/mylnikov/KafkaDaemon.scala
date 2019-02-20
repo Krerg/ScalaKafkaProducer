@@ -35,7 +35,7 @@ object KafkaDaemon {
 
     // Launch jobs in parallel
     for (i <- 0 to DEFAULT_THREAD_SIZE) {
-      THREAD_POOL.execute(new GenerateEventJob(MINIMUM_EVENT_DELAY, MAXIMUM_EVENT_DELAY, producer, args(2)))
+      THREAD_POOL.execute(new GenerateEventJob(MINIMUM_EVENT_DELAY, MAXIMUM_EVENT_DELAY, producer, args(1)))
     }
   }
 

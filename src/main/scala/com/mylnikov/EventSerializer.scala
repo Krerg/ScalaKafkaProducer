@@ -20,8 +20,8 @@ class EventSerializer extends Serializer[BookingEvent]{
 
   override def serialize(topic: String, data: BookingEvent): Array[Byte] = {
     try mapper.writeValueAsString(data).getBytes match {
-      case Success(bytes: Array[Byte]) => bytes
-      case Failure(_) => Array.emptyByteArray
+      case bytes: Array[Byte] => bytes
+      case ex => Array.emptyByteArray
     }
   }
 
