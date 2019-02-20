@@ -2,59 +2,34 @@ package com.mylnikov
 
 import java.util.Date
 
-import com.fasterxml.jackson.annotation.JsonIgnoreProperties
-
 import scala.beans.BeanProperty
 
-@JsonIgnoreProperties(ignoreUnknown = true)
-case class BookingEvent(@BeanProperty var dateTime: Date = null,
-                        @BeanProperty var siteName: Int = 0,
-                        @BeanProperty var posaContinent: Int = 0,
-                        @BeanProperty var userLocationCountry: Int = 0,
-                        @BeanProperty var userLocationRegion	: Int = 0,
-                        @BeanProperty var userLocationCity	: Int = 0,
-                        @BeanProperty var origDestinationDistance	: Double = 0,
-                        @BeanProperty var userId	: Int = 0,
-                        @BeanProperty var mobile	: Boolean = false,
-                        @BeanProperty var package_	: Boolean = false,
-                        @BeanProperty var channel	: Int = 0,
-                        @BeanProperty var srchCi	: String = null,
-                        @BeanProperty var srchCo	: String = null,
-                        @BeanProperty var srchAdultsCnt	: Int = 0,
-                        @BeanProperty var srchRmCnt	: Int = 0,
-                        @BeanProperty var srchDestinationId	: Int = 0,
-                        @BeanProperty var srchDestinationTypeId	: Int = 0,
-                        @BeanProperty var hotelContinent	: Int = 0,
-                        @BeanProperty var hotelMarket	: Int = 0,
-                        @BeanProperty var booking	: Boolean = false,
-                        @BeanProperty var cnt	: Long = 0,
-                        @BeanProperty var hotelCluster	: Int = 0
+case class BookingEvent(@BeanProperty dateTime: Date = null,
+                        @BeanProperty siteName: Int = 0,
+                        @BeanProperty posaContinent: Int = 0,
+                        @BeanProperty userLocationCountry: Int = 0,
+                        @BeanProperty userLocationRegion: Int = 0,
+                        @BeanProperty userLocationCity: Int = 0,
+                        @BeanProperty origDestinationDistance: Double = 0,
+                        @BeanProperty userId: Int = 0,
+                        @BeanProperty mobile: Boolean = false,
+                        @BeanProperty package_ : Boolean = false,
+                        @BeanProperty channel: Int = 0,
+                        @BeanProperty srchCi: String = null,
+                        @BeanProperty srchCo: String = null,
+                        @BeanProperty srchAdultsCnt: Int = 0,
+                        @BeanProperty srchRmCnt: Int = 0,
+                        @BeanProperty srchDestinationId: Int = 0,
+                        @BeanProperty srchDestinationTypeId: Int = 0,
+                        @BeanProperty hotelContinent: Int = 0,
+                        @BeanProperty hotelMarket: Int = 0,
+                        @BeanProperty booking: Boolean = false,
+                        @BeanProperty cnt: Long = 0,
+                        @BeanProperty hotelCluster: Int = 0
                        ) {
 
   def this() {
-    this(new Date(),
-      0,
-      0,
-      0,
-      0,
-      0,
-      0,
-      0,
-      false,
-      false,
-      0,
-      "",
-      "",
-      0,
-      0,
-      0,
-      0,
-      0,
-      0,
-      false,
-      0,
-      0)
+    this(dateTime = new Date(), srchCi = "", srchCo = "")
   }
 
 }
-

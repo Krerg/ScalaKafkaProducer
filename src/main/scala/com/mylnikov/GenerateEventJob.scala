@@ -14,7 +14,7 @@ import scala.util.Random
   * @param maximumDelay maximum delay between sending events
   * @param producer kafka producer
   */
-class GenerateEventJob(minimumDelay: Long, maximumDelay: Long, producer: KafkaProducer[String, BookingEvent]) extends Runnable{
+class GenerateEventJob(minimumDelay: Long, maximumDelay: Long, producer: KafkaProducer[String, BookingEvent], topic : String) extends Runnable{
 
   /**
     * For testing purposes.
@@ -26,13 +26,13 @@ class GenerateEventJob(minimumDelay: Long, maximumDelay: Long, producer: KafkaPr
     while(!stopped) {
       val delay = ThreadLocalRandom.current().nextLong(minimumDelay, maximumDelay)
       Thread.sleep(delay)
-      producer.send(new ProducerRecord[String, BookingEvent]("test", generateEvent()))
+      producer.send(new ProducerRecord[String, BookingEvent](topic, generateEvent()))
     }
 
   }
 
   /**
-    * Creates {@link BookingEvent} and randomize properties for it.
+    * Creates [[BookingEvent]] and randomize properties for it.
     * @return event woth ranomized properties
     */
   def generateEvent() : BookingEvent = {

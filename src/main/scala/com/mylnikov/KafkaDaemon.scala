@@ -19,8 +19,8 @@ object KafkaDaemon {
 
   def main(args: Array[String]): Unit = {
 
-    if (args.length < 1) {
-      throw new IllegalArgumentException("You should specify bootstrap server in arguments")
+    if (args.length < 2) {
+      throw new IllegalArgumentException("You should specify bootstrap server and topic in arguments in arguments")
     }
 
     // Kafka config
@@ -35,7 +35,7 @@ object KafkaDaemon {
 
     // Launch jobs in parallel
     for (i <- 0 to DEFAULT_THREAD_SIZE) {
-      THREAD_POOL.execute(new GenerateEventJob(MINIMUM_EVENT_DELAY, MAXIMUM_EVENT_DELAY, producer))
+      THREAD_POOL.execute(new GenerateEventJob(MINIMUM_EVENT_DELAY, MAXIMUM_EVENT_DELAY, producer, args(2)))
     }
   }
 
